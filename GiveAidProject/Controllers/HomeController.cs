@@ -22,5 +22,20 @@ namespace GiveAidProject.Controllers
 
             return View();
         }
+
+        public ActionResult Causes()
+        {
+            return View();
+        }
+
+        public ActionResult BlogSingle()
+        {
+            return View();
+        }
+
+        public ActionResult Donate()
+        {
+            return View();
+        }
     }
 }
