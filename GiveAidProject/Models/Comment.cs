@@ -20,7 +20,7 @@ namespace GiveAidProject.Models
 
         [Required]
         public string Content { get; set; }
-    
+
         public ProjectCommentStatusEnum Status { get; set; }
         public enum ProjectCommentStatusEnum
         {

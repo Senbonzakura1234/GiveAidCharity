@@ -1,7 +1,7 @@
 namespace GiveAidProject.Migrations
 {
     using System.Data.Entity.Migrations;
-    
+
     public partial class Initial : DbMigration
     {
         public override void Up()
@@ -9,207 +9,207 @@ namespace GiveAidProject.Migrations
             CreateTable(
                 "dbo.AspNetRoles",
                 c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        Name = c.String(nullable: false, maxLength: 256),
-                        Description = c.String(),
-                        CreatedAt = c.DateTime(),
-                        UpdatedAt = c.DateTime(),
-                        DeletedAt = c.DateTime(),
-                        Discriminator = c.String(nullable: false, maxLength: 128),
-                    })
+                {
+                    Id = c.String(nullable: false, maxLength: 128),
+                    Name = c.String(nullable: false, maxLength: 256),
+                    Description = c.String(),
+                    CreatedAt = c.DateTime(),
+                    UpdatedAt = c.DateTime(),
+                    DeletedAt = c.DateTime(),
+                    Discriminator = c.String(nullable: false, maxLength: 128),
+                })
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
-            
+
             CreateTable(
                 "dbo.AspNetUserRoles",
                 c => new
-                    {
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                    })
+                {
+                    UserId = c.String(nullable: false, maxLength: 128),
+                    RoleId = c.String(nullable: false, maxLength: 128),
+                })
                 .PrimaryKey(t => new { t.UserId, t.RoleId })
                 .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.RoleId);
-            
+
             CreateTable(
                 "dbo.AspNetUsers",
                 c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        FirstName = c.String(),
-                        LastName = c.String(),
-                        Avatar = c.String(),
-                        Description = c.String(),
-                        Address = c.String(),
-                        Zipcode = c.String(),
-                        CompanyName = c.String(),
-                        Gender = c.Int(nullable: false),
-                        Birthday = c.DateTime(),
-                        Status = c.Int(nullable: false),
-                        CreatedAt = c.DateTime(nullable: false),
-                        UpdatedAt = c.DateTime(nullable: false),
-                        DeletedAt = c.DateTime(),
-                        Email = c.String(maxLength: 256),
-                        EmailConfirmed = c.Boolean(nullable: false),
-                        PasswordHash = c.String(),
-                        SecurityStamp = c.String(),
-                        PhoneNumber = c.String(),
-                        PhoneNumberConfirmed = c.Boolean(nullable: false),
-                        TwoFactorEnabled = c.Boolean(nullable: false),
-                        LockoutEndDateUtc = c.DateTime(),
-                        LockoutEnabled = c.Boolean(nullable: false),
-                        AccessFailedCount = c.Int(nullable: false),
-                        UserName = c.String(nullable: false, maxLength: 256),
-                    })
+                {
+                    Id = c.String(nullable: false, maxLength: 128),
+                    FirstName = c.String(),
+                    LastName = c.String(),
+                    Avatar = c.String(),
+                    Description = c.String(),
+                    Address = c.String(),
+                    Zipcode = c.String(),
+                    CompanyName = c.String(),
+                    Gender = c.Int(nullable: false),
+                    Birthday = c.DateTime(),
+                    Status = c.Int(nullable: false),
+                    CreatedAt = c.DateTime(nullable: false),
+                    UpdatedAt = c.DateTime(nullable: false),
+                    DeletedAt = c.DateTime(),
+                    Email = c.String(maxLength: 256),
+                    EmailConfirmed = c.Boolean(nullable: false),
+                    PasswordHash = c.String(),
+                    SecurityStamp = c.String(),
+                    PhoneNumber = c.String(),
+                    PhoneNumberConfirmed = c.Boolean(nullable: false),
+                    TwoFactorEnabled = c.Boolean(nullable: false),
+                    LockoutEndDateUtc = c.DateTime(),
+                    LockoutEnabled = c.Boolean(nullable: false),
+                    AccessFailedCount = c.Int(nullable: false),
+                    UserName = c.String(nullable: false, maxLength: 256),
+                })
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.UserName, unique: true, name: "UserNameIndex");
-            
+
             CreateTable(
                 "dbo.Blogs",
                 c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        ApplicationUserId = c.String(maxLength: 128),
-                        ProjectId = c.String(maxLength: 128),
-                        Title = c.String(nullable: false),
-                        Content = c.String(nullable: false),
-                        Status = c.Int(nullable: false),
-                        CreatedAt = c.DateTime(nullable: false),
-                        UpdatedAt = c.DateTime(nullable: false),
-                        DeletedAt = c.DateTime(),
-                    })
+                {
+                    Id = c.String(nullable: false, maxLength: 128),
+                    ApplicationUserId = c.String(maxLength: 128),
+                    ProjectId = c.String(maxLength: 128),
+                    Title = c.String(nullable: false),
+                    Content = c.String(nullable: false),
+                    Status = c.Int(nullable: false),
+                    CreatedAt = c.DateTime(nullable: false),
+                    UpdatedAt = c.DateTime(nullable: false),
+                    DeletedAt = c.DateTime(),
+                })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
                 .ForeignKey("dbo.Projects", t => t.ProjectId)
                 .Index(t => t.ApplicationUserId)
                 .Index(t => t.ProjectId);
-            
+
             CreateTable(
                 "dbo.Projects",
                 c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        ApplicationUserId = c.String(maxLength: 128),
-                        Name = c.String(nullable: false),
-                        Description = c.String(),
-                        Goal = c.Double(nullable: false),
-                        CurrentFund = c.Double(nullable: false),
-                        StartDate = c.DateTime(nullable: false),
-                        ExpireDate = c.DateTime(nullable: false),
-                        Status = c.Int(nullable: false),
-                        CreatedAt = c.DateTime(nullable: false),
-                        UpdatedAt = c.DateTime(nullable: false),
-                        DeletedAt = c.DateTime(),
-                    })
+                {
+                    Id = c.String(nullable: false, maxLength: 128),
+                    ApplicationUserId = c.String(maxLength: 128),
+                    Name = c.String(nullable: false),
+                    Description = c.String(),
+                    Goal = c.Double(nullable: false),
+                    CurrentFund = c.Double(nullable: false),
+                    StartDate = c.DateTime(nullable: false),
+                    ExpireDate = c.DateTime(nullable: false),
+                    Status = c.Int(nullable: false),
+                    CreatedAt = c.DateTime(nullable: false),
+                    UpdatedAt = c.DateTime(nullable: false),
+                    DeletedAt = c.DateTime(),
+                })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
                 .Index(t => t.ApplicationUserId);
-            
+
             CreateTable(
                 "dbo.Donations",
                 c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        ApplicationUserId = c.String(maxLength: 128),
-                        ProjectId = c.String(maxLength: 128),
-                        Amount = c.Double(nullable: false),
-                        PaymentMethod = c.Int(nullable: false),
-                        Status = c.Int(nullable: false),
-                        CreatedAt = c.DateTime(nullable: false),
-                        UpdatedAt = c.DateTime(nullable: false),
-                        DeletedAt = c.DateTime(),
-                    })
+                {
+                    Id = c.String(nullable: false, maxLength: 128),
+                    ApplicationUserId = c.String(maxLength: 128),
+                    ProjectId = c.String(maxLength: 128),
+                    Amount = c.Double(nullable: false),
+                    PaymentMethod = c.Int(nullable: false),
+                    Status = c.Int(nullable: false),
+                    CreatedAt = c.DateTime(nullable: false),
+                    UpdatedAt = c.DateTime(nullable: false),
+                    DeletedAt = c.DateTime(),
+                })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
                 .ForeignKey("dbo.Projects", t => t.ProjectId)
                 .Index(t => t.ApplicationUserId)
                 .Index(t => t.ProjectId);
-            
+
             CreateTable(
                 "dbo.Follows",
                 c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        ApplicationUserId = c.String(maxLength: 128),
-                        ProjectId = c.String(maxLength: 128),
-                        Status = c.Int(nullable: false),
-                        CreatedAt = c.DateTime(nullable: false),
-                        UpdatedAt = c.DateTime(nullable: false),
-                        DeletedAt = c.DateTime(),
-                    })
+                {
+                    Id = c.String(nullable: false, maxLength: 128),
+                    ApplicationUserId = c.String(maxLength: 128),
+                    ProjectId = c.String(maxLength: 128),
+                    Status = c.Int(nullable: false),
+                    CreatedAt = c.DateTime(nullable: false),
+                    UpdatedAt = c.DateTime(nullable: false),
+                    DeletedAt = c.DateTime(),
+                })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
                 .ForeignKey("dbo.Projects", t => t.ProjectId)
                 .Index(t => t.ApplicationUserId)
                 .Index(t => t.ProjectId);
-            
+
             CreateTable(
                 "dbo.ProjectComments",
                 c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        ApplicationUserId = c.String(maxLength: 128),
-                        ProjectId = c.String(maxLength: 128),
-                        ParentId = c.String(),
-                        Content = c.String(nullable: false),
-                        Status = c.Int(nullable: false),
-                        CreatedAt = c.DateTime(nullable: false),
-                        UpdatedAt = c.DateTime(nullable: false),
-                        DeletedAt = c.DateTime(),
-                    })
+                {
+                    Id = c.String(nullable: false, maxLength: 128),
+                    ApplicationUserId = c.String(maxLength: 128),
+                    ProjectId = c.String(maxLength: 128),
+                    ParentId = c.String(),
+                    Content = c.String(nullable: false),
+                    Status = c.Int(nullable: false),
+                    CreatedAt = c.DateTime(nullable: false),
+                    UpdatedAt = c.DateTime(nullable: false),
+                    DeletedAt = c.DateTime(),
+                })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserId)
                 .ForeignKey("dbo.Projects", t => t.ProjectId)
                 .Index(t => t.ApplicationUserId)
                 .Index(t => t.ProjectId);
-            
+
             CreateTable(
                 "dbo.ProjectImages",
                 c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        ProjectId = c.String(maxLength: 128),
-                        Url = c.String(nullable: false),
-                        Description = c.String(),
-                        Status = c.Int(nullable: false),
-                        CreatedAt = c.DateTime(nullable: false),
-                        UpdatedAt = c.DateTime(nullable: false),
-                        DeletedAt = c.DateTime(),
-                    })
+                {
+                    Id = c.String(nullable: false, maxLength: 128),
+                    ProjectId = c.String(maxLength: 128),
+                    Url = c.String(nullable: false),
+                    Description = c.String(),
+                    Status = c.Int(nullable: false),
+                    CreatedAt = c.DateTime(nullable: false),
+                    UpdatedAt = c.DateTime(nullable: false),
+                    DeletedAt = c.DateTime(),
+                })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Projects", t => t.ProjectId)
                 .Index(t => t.ProjectId);
-            
+
             CreateTable(
                 "dbo.AspNetUserClaims",
                 c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        ClaimType = c.String(),
-                        ClaimValue = c.String(),
-                    })
+                {
+                    Id = c.Int(nullable: false, identity: true),
+                    UserId = c.String(nullable: false, maxLength: 128),
+                    ClaimType = c.String(),
+                    ClaimValue = c.String(),
+                })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
-            
+
             CreateTable(
                 "dbo.AspNetUserLogins",
                 c => new
-                    {
-                        LoginProvider = c.String(nullable: false, maxLength: 128),
-                        ProviderKey = c.String(nullable: false, maxLength: 128),
-                        UserId = c.String(nullable: false, maxLength: 128),
-                    })
+                {
+                    LoginProvider = c.String(nullable: false, maxLength: 128),
+                    ProviderKey = c.String(nullable: false, maxLength: 128),
+                    UserId = c.String(nullable: false, maxLength: 128),
+                })
                 .PrimaryKey(t => new { t.LoginProvider, t.ProviderKey, t.UserId })
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
-            
+
         }
-        
+
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
