@@ -23,6 +23,13 @@ namespace GiveAidProject
 
             bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
                       "~/Content/bootstrap.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/root-script").Include(
+                "~/Content/DashBoardTheme/vendors/js/vendor.bundle.base.js",
+                "~/Content/DashBoardTheme/vendors/chart.js/Chart.min.js",
+                "~/Content/DashBoardTheme/js/off-canvas.js", "~/Content/DashBoardTheme/js/hoverable-collapse.js",
+                "~/Content/DashBoardTheme/js/misc.js", "~/Content/DashBoardTheme/js/dashboard.js",
+                "~/Content/DashBoardTheme/js/todolist.js"));
         }
     }
 }

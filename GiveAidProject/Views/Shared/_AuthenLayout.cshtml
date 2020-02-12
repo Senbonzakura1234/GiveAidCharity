@@ -8,6 +8,8 @@
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="/Content/AuthenTheme/images/icons/favicon.ico" />
     <!--===============================================================================================-->
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/Site.css")
     @Styles.Render("~/Content/bootstrap")
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/Content/AuthenTheme/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -26,6 +28,7 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/Content/AuthenTheme/css/util.css">
     <link rel="stylesheet" type="text/css" href="/Content/AuthenTheme/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/Content/AuthenTheme/css/custom.css">
     <!--===============================================================================================-->
 </head>
 <body>
@@ -58,6 +61,7 @@
     <script src="/Content/AuthenTheme/vendor/countdowntime/countdowntime.js"></script>
     <!--===============================================================================================-->
     <script src="/Content/AuthenTheme/js/main.js"></script>
+    <script src="/Content/AuthenTheme/js/custom.js"></script>
     @RenderSection("scripts", required: false)
 
 </body>
