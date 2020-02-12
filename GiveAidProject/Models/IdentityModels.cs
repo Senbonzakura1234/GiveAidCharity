@@ -3,8 +3,11 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
+using Microsoft.Ajax.Utilities;
 
 namespace GiveAidProject.Models
 {
@@ -112,5 +115,11 @@ namespace GiveAidProject.Models
         {
             return new ApplicationDbContext();
         }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<ProjectComment> ProjectComments { get; set; }
+        public DbSet<Donation> Donations { get; set; }
+        public DbSet<Follow> Follows { get; set; }
     }
 }
